@@ -2,11 +2,14 @@ package stepdefs;
 
 import java.time.Duration;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 
 public class Hooks {
 	
@@ -21,8 +24,15 @@ public class Hooks {
 	}
 	
 	@After
-	public void TearDown()
+	public void TearDown(Scenario scenerio)
 	{
+		
+		if(scenerio.isFailed())
+		{
+			TakesScreenshot ts = (TakesScreenshot) driver;
+			byte[] src = ts.getScreenshotAs(OutputType.BYTES);
+			scenerio.embed(src,"image/png","screenshot");
+		}
 		driver.quit();
 	}
 	

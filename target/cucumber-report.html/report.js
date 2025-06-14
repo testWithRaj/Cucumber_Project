@@ -81,15 +81,17 @@ formatter.result({
   "status": "passed"
 });
 formatter.step({
-  "name": "I should be able to see the home page \"The email address or password you have entered is invalid\"",
+  "name": "I should be able to see the home page \"The email address or password you have entered is incorrect\"",
   "keyword": "Then "
 });
 formatter.match({
   "location": "stepdefs.Login_stepdefs.i_should_be_able_to_see_the_home_page(java.lang.String)"
 });
 formatter.result({
-  "status": "passed"
+  "error_message": "org.junit.ComparisonFailure: expected:\u003c...u have entered is in[correct]\u003e but was:\u003c...u have entered is in[valid]\u003e\r\n\tat org.junit.Assert.assertEquals(Assert.java:117)\r\n\tat org.junit.Assert.assertEquals(Assert.java:146)\r\n\tat stepdefs.Login_stepdefs.i_should_be_able_to_see_the_home_page(Login_stepdefs.java:82)\r\n\tat ✽.I should be able to see the home page \"The email address or password you have entered is incorrect\"(file:///C:/Users/ArtiR/eclipse_marketplace/Cucumber_Project/src/test/java/features/Login.feature:20)\r\n",
+  "status": "failed"
 });
+formatter.embedding("image/png", "embedded0.png", "screenshot");
 formatter.after({
   "status": "passed"
 });
