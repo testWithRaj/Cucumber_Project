@@ -12,30 +12,27 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
 public class Hooks {
-	
+
 	public static WebDriver driver;
-	
+
 	@Before
-	public void setUp()
-	{
-		driver= new ChromeDriver();
+	public void SetUp() {
+		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(4));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 	}
-	
+
 	@After
-	public void TearDown(Scenario scenerio)
-	{
-		
-		if(scenerio.isFailed())
-		{
+	public void TearDown(Scenario scenario) {
+
+		if (scenario.isFailed()) {
+
 			TakesScreenshot ts = (TakesScreenshot) driver;
+
 			byte[] src = ts.getScreenshotAs(OutputType.BYTES);
-			scenerio.embed(src,"image/png","screenshot");
+			scenario.embed(src, "image/png", "screenshot");
 		}
 		driver.quit();
 	}
-	
-	
 
 }
