@@ -1,5 +1,6 @@
 package stepdefs;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -54,6 +55,35 @@ public class Login_stepdefs {
 	    // Write code here that turns the phrase above into concrete actions
 	   
 	}
+	
+	@When("I enter the Username {string}")
+	public void i_enter_the_Username(String UserNameval1) {
+	    // Write code here that turns the phrase above into concrete actions
+		WebElement Username = driver.findElement(By.name("user_login"));
+		Username.sendKeys(UserNameval1);
+		
+	   
+	}
+
+	@When("I enter the Password {string}")
+	public void i_enter_the_Password(String PasswordVal) {
+	    // Write code here that turns the phrase above into concrete actions
+		
+		WebElement Password = driver.findElement(By.id("password"));
+		Password.sendKeys(PasswordVal);
+	    
+	}
+	
+	@Then("I should be able to see the home page {string}")
+	public void i_should_be_able_to_see_the_home_page(String expError) {
+	    // Write code here that turns the phrase above into concrete actions
+		WebElement Error = driver.findElement(By.id("msg_box"));
+		String actError = Error.getText();
+		Assert.assertEquals(expError, actError);
+	}
+
+
+
 
 
 
